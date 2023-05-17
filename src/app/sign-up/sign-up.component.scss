@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    display: grid;
+    grid-area: auto;
+    gap: 20px;
+    transform: translate(-20%, 50%);
+}

@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+    
+    .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 35rem;
+    }
+    
+    .content {
+    margin-top: 20px;
+    }
+    
+    .grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    }
+    
+    .grid-item {
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    
+    .grid-item-label {
+    font-weight: bold;
+    }
+    
+    .show-hide-button {
+    margin-top: 10px;
+    }
+    
+    .item{
+        text-align: center;
+    }
+    

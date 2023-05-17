@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="card">
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <header>
+      <h2 class="item">Introduction</h2>
+    </header>
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <div class="content">
+      <div class="grid-container">
+        <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+        <div class="grid-item">
+          <img [src]="user.photo" [alt]="user.name" />
+        </div>
+        <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
+        <div class="grid-item">
+          <p class="grid-item-label">Name:</p>
+          <p>{{ user.name }}</p>
+        </div>
+        <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
+        <div class="grid-item">
+          <p class="grid-item-label">Firstname:</p>
+          <p>{{ user.firstName }}</p>
+        </div>
+        <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
+        <div class="grid-item">
+          <p class="grid-item-label age">Age:</p>
+          <p *ngIf="showContent">{{ user.age }}</p>
+          <button (click)="toggleContent()">Afficher/Masquer mon âge</button>
+        </div>
+        <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
+        <div class="grid-item">
+          <p class="grid-item-label">Quote:</p>
+          <p>{{ user.quote }}</p>
+          <input type="text" [(ngModel)]="user.quote" />
+        </div>
+        <!-- !!!!!!!!!!!!!!!!!!!!!!! -->
+      </div>
+    </div>
+  </div>
+</div>
