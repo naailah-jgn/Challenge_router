@@ -1,17 +1,32 @@
 <div class="container">
-  <div class="box">
+  <form class="box" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <label for="firstname">FirstName</label>
-    <input type="text" name="firstname" id="firstname" />
+    <input
+      type="text"
+      name="firstname"
+      id="firstname"
+      formControlName="firstName"
+    />
 
     <label for="lastname">LastName</label>
-    <input type="text" name="lastname" id="lastname" />
+    <input
+      type="text"
+      name="lastname"
+      id="lastname"
+      formControlName="lastName"
+    />
 
     <label for="email">Email</label>
-    <input type="email" name="email" id="email" />
+    <input type="email" name="email" id="email" formControlName="email" />
 
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" />
+    <input
+      type="password"
+      name="password"
+      id="password"
+      formControlName="password"
+    />
 
-    <input type="submit" value="Submit" />
-  </div>
+    <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+  </form>
 </div>

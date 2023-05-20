@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="form-box">
+    <form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+      <!-- Message d'erreurs du formulaire global -->
+      <div>
+        Form submitted ? {{ myForm.submitted }} Form valid ?
+        {{ myForm.valid }} Form invalid ? {{ myForm.invalid }}
+      </div>
+
+      <fieldset>
+        <label for="title"> Title </label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          minlength="10"
+          [(ngModel)]="model.title"
+          required
+        />
+      </fieldset>
+      <div *ngIf="title.errors">
+        <span *ngIf="title.errors?.['required']">Le titre est requis</span
+        ><span *ngIf="title.errors?.['minlength']"
+          >La longueur minimale doit être supérieure à 5</span
+        >
+      </div>
+
+      <fieldset>
+        <label for="quantity"> Quantité </label>
+        <input
+          type="number"
+          name="quantity"
+          id="quantity"
+          [(ngModel)]="model.quantity"
+          required
+        />
+      </fieldset>
+      <div *ngIf="quantity.errors">
+        <span *ngIf="quantity.errors?.['required']"
+          >Le champ quantité est requis</span
+        >
+      </div>
+
+      <fieldset>
+        <label for="dateOrder"> Date de commande </label>
+        <input
+          type="date"
+          name="dateOrder"
+          id="dateOrder"
+          [(ngModel)]="model.date"
+          required
+        />
+      </fieldset>
+      <fieldset>
+        <label for="email"> Contact </label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          [(ngModel)]="model.contact"
+          required
+          email
+        />
+      </fieldset>
+      <div *ngIf="contact.errors">
+        <span *ngIf="contact.errors?.['required']"
+          >Le champ email est requis</span
+        >
+        <span *ngIf="contact.errors?.['email']"
+          >L'adresse email doit être valide</span
+        >
+      </div>
+      <fieldset>
+        <button type="reset">Restaurer</button>
+        <button type="submit">Sauvegarder</button>
+      </fieldset>
+    </form>
+  </div>
+</div>

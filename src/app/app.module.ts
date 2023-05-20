@@ -9,6 +9,8 @@ import { ROUTES } from './app.routes';
 import { MenuComponent } from './menu/menu.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { MyFormComponent } from './my-form/my-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     ContactComponent,
     MenuComponent,
     UserProfileComponent,
-    SignUpComponent
+    SignUpComponent,
+    MyFormComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { ContactComponent } from './contact/contact.component';
 import { MenuComponent } from './menu/menu.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { MyFormComponent } from './my-form/my-form.component';
 
 const ROUTES: Routes = [
     {
@@ -21,6 +22,9 @@ const ROUTES: Routes = [
     },
     { 
         path: '', redirectTo: '/user', pathMatch: 'full'
+    },
+    {
+        path: 'form', component: MyFormComponent
     },
 ]
 
