@@ -1,31 +1,45 @@
-import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SignUp } from '../models/signup';
 
-// import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+selector: 'app-sign-up',
+templateUrl: './sign-up.component.html',
+styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent {
-  // registerForm = new FormGroup("");
-  registerForm = this.fb.group({
-    firstName : ['', Validators.required],
-    lastName: ['', Validators.required],
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-  });
-  constructor(private fb: FormBuilder) { }
+export class SignUpComponent implements OnInit {
 
-  // firstName = new FormControl('');
-  // lastName = new FormControl('');
-  // email = new FormControl('');
-  // password = new FormControl('');
+registerForm!: FormGroup;
+model: SignUp = new SignUp("", "", "", "");
 
-  onSubmit(): void {
-    console.warn(this.registerForm.value);
+constructor(private fb: FormBuilder) {}
 
-  }
+ngOnInit(): void {
+this.registerForm = this.fb.group({
+firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+email: ['', [Validators.required, Validators.email]],
+password: ['', Validators.required]
+});
+}
+
+get firstName() {
+return this.registerForm.get('firstName');
+}
+
+get lastName() {
+return this.registerForm.get('lastName');
+}
+
+get email() {
+return this.registerForm.get('email');
+}
+
+onSubmit(): void {
+if (this.registerForm.invalid) {
+return;
+}
+console.warn(this.registerForm.value);
+}
 }

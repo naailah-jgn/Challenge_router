@@ -1,23 +1,82 @@
 <div class="container">
   <form class="box" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <label for="firstname">FirstName</label>
+    <label for="firstName">FirstName</label>
     <input
       type="text"
-      name="firstname"
-      id="firstname"
+      name="firstName"
+      id="firstName"
       formControlName="firstName"
+      minlength="3"
+      maxlength="15"
     />
+    <div
+      *ngIf="
+        registerForm.controls['firstName'].invalid &&
+        (registerForm.controls['firstName'].dirty ||
+          registerForm.controls['firstName'].touched)
+      "
+    >
+      <span *ngIf="registerForm.controls['firstName'].errors?.['required']"
+        >Le prénom est requis</span
+      >
+      <span *ngIf="registerForm.controls['firstName'].errors?.['minlength']">
+        Le prénom doit comporter au moins 3 caractères
+      </span>
+      <span *ngIf="registerForm.controls['firstName'].errors?.['maxlength']">
+        Le prénom ne doit pas dépasser 15 caractères
+      </span>
+    </div>
 
-    <label for="lastname">LastName</label>
+    <label for="lastName">LastName</label>
     <input
       type="text"
-      name="lastname"
-      id="lastname"
+      name="lastName"
+      id="lastName"
       formControlName="lastName"
+      minlength="3"
+      maxlength="15"
     />
+    <div
+      *ngIf="
+        registerForm.controls['lastName'].invalid &&
+        (registerForm.controls['lastName'].dirty ||
+          registerForm.controls['lastName'].touched)
+      "
+    >
+      <span *ngIf="registerForm.controls['lastName'].errors?.['required']"
+        >Le nom est requis</span
+      >
+      <span *ngIf="registerForm.controls['lastName'].errors?.['minlength']">
+        Le nom doit comporter au moins 3 caractères
+      </span>
+      <span *ngIf="registerForm.controls['lastName'].errors?.['maxlength']">
+        Le nom ne doit pas dépasser 15 caractères
+      </span>
+    </div>
 
     <label for="email">Email</label>
-    <input type="email" name="email" id="email" formControlName="email" />
+    <input
+      type="email"
+      name="email"
+      id="email"
+      formControlName="email"
+      required
+      email
+    />
+    <div
+      *ngIf="
+        registerForm.controls['email'].invalid &&
+        (registerForm.controls['email'].dirty ||
+          registerForm.controls['email'].touched)
+      "
+    >
+      <span *ngIf="registerForm.controls['email'].errors?.['required']"
+        >L'email est requis</span
+      >
+      <span *ngIf="registerForm.controls['email'].errors?.['email']"
+        >L'email est invalide</span
+      >
+    </div>
 
     <label for="password">Password</label>
     <input
