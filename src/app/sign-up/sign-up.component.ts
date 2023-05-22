@@ -1,45 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { NgForm, FormGroup, FormControl } from '@angular/forms';
 import { SignUp } from '../models/signup';
 
-
 @Component({
-selector: 'app-sign-up',
-templateUrl: './sign-up.component.html',
-styleUrls: ['./sign-up.component.scss']
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
-
-registerForm!: FormGroup;
+export class SignUpComponent {
 model: SignUp = new SignUp("", "", "", "");
+isSubmitted: boolean = false;
 
-constructor(private fb: FormBuilder) {}
-
-ngOnInit(): void {
-this.registerForm = this.fb.group({
-firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-email: ['', [Validators.required, Validators.email]],
-password: ['', Validators.required]
-});
+constructor(){
 }
-
-get firstName() {
-return this.registerForm.get('firstName');
-}
-
-get lastName() {
-return this.registerForm.get('lastName');
-}
-
-get email() {
-return this.registerForm.get('email');
-}
-
-onSubmit(): void {
-if (this.registerForm.invalid) {
-return;
-}
-console.warn(this.registerForm.value);
-}
+  onSubmit(): void {
+    this.isSubmitted = true;
+    console.log(this.isSubmitted);
+    
+    console.log(this.model);
+  }
 }

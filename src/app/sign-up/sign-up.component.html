@@ -1,30 +1,29 @@
 <div class="container">
-  <form class="box" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <form class="box" #myForm="ngForm" (ngSubmit)="onSubmit()">
+    <!-- envoi de formulaire s'il est valide -->
     <label for="firstName">FirstName</label>
     <input
       type="text"
       name="firstName"
       id="firstName"
-      formControlName="firstName"
+      [(ngModel)]="model.firstName"
+      required
       minlength="3"
       maxlength="15"
+      #firstName="ngModel"
     />
-    <div
-      *ngIf="
-        registerForm.controls['firstName'].invalid &&
-        (registerForm.controls['firstName'].dirty ||
-          registerForm.controls['firstName'].touched)
-      "
-    >
-      <span *ngIf="registerForm.controls['firstName'].errors?.['required']"
-        >Le prénom est requis</span
+
+    <div *ngIf="firstName.errors && isSubmitted">
+      <span *ngIf="firstName.errors?.['required']"
+        >Le champ {{ model.firstName }} est requis</span
       >
-      <span *ngIf="registerForm.controls['firstName'].errors?.['minlength']">
-        Le prénom doit comporter au moins 3 caractères
-      </span>
-      <span *ngIf="registerForm.controls['firstName'].errors?.['maxlength']">
-        Le prénom ne doit pas dépasser 15 caractères
-      </span>
+      <span *ngIf="firstName.errors?.['minlength']"
+        >Le champ {{ model.firstName }} doit comporter au moins 3
+        caractères.</span
+      >
+      <span *ngIf="firstName.errors?.['maxlength']"
+        >Le champ {{ model.firstName }} ne doit pas dépasser 15 caractères</span
+      >
     </div>
 
     <label for="lastName">LastName</label>
@@ -32,26 +31,23 @@
       type="text"
       name="lastName"
       id="lastName"
-      formControlName="lastName"
+      [(ngModel)]="model.lastName"
+      required
       minlength="3"
       maxlength="15"
+      #lastName="ngModel"
     />
-    <div
-      *ngIf="
-        registerForm.controls['lastName'].invalid &&
-        (registerForm.controls['lastName'].dirty ||
-          registerForm.controls['lastName'].touched)
-      "
-    >
-      <span *ngIf="registerForm.controls['lastName'].errors?.['required']"
-        >Le nom est requis</span
+    <div *ngIf="lastName.errors && isSubmitted">
+      <span *ngIf="lastName.errors?.['required']"
+        >Le champ {{ model.lastName }} est requis</span
       >
-      <span *ngIf="registerForm.controls['lastName'].errors?.['minlength']">
-        Le nom doit comporter au moins 3 caractères
-      </span>
-      <span *ngIf="registerForm.controls['lastName'].errors?.['maxlength']">
-        Le nom ne doit pas dépasser 15 caractères
-      </span>
+      <span *ngIf="lastName.errors?.['minlength']"
+        >Le champ {{ model.lastName }} doit comporter au moins 3
+        caractères.</span
+      >
+      <span *ngIf="lastName.errors?.['maxlength']"
+        >Le champ {{ model.lastName }} ne doit pas dépasser 15 caractères</span
+      >
     </div>
 
     <label for="email">Email</label>
@@ -59,22 +55,14 @@
       type="email"
       name="email"
       id="email"
-      formControlName="email"
+      [(ngModel)]="model.email"
       required
       email
+      #email="ngModel"
     />
-    <div
-      *ngIf="
-        registerForm.controls['email'].invalid &&
-        (registerForm.controls['email'].dirty ||
-          registerForm.controls['email'].touched)
-      "
-    >
-      <span *ngIf="registerForm.controls['email'].errors?.['required']"
-        >L'email est requis</span
-      >
-      <span *ngIf="registerForm.controls['email'].errors?.['email']"
-        >L'email est invalide</span
+    <div *ngIf="email.errors && isSubmitted">
+      <span *ngIf="email.errors?.['required']"
+        >Le champ {{ model.email }} est requis</span
       >
     </div>
 
@@ -83,9 +71,15 @@
       type="password"
       name="password"
       id="password"
-      formControlName="password"
+      [(ngModel)]="model.password"
+      #password="ngModel"
     />
 
-    <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+    <div *ngIf="password.errors && isSubmitted">
+      <span *ngIf="password.errors?.['required']"
+        >Le champ {{ model.password }} est requis</span
+      >
+    </div>
+    <button type="submit">Submit</button>
   </form>
 </div>
